@@ -1,0 +1,13 @@
+<h1>Catálogo GO Web Solutions</h1>
+
+<ul>
+  {{#each products}}
+    <li>
+      <strong>{{this.title}}</strong>
+      - ${{this.price}}
+      <p>{{this.description}}</p>
+    </li>
+  {{else}}
+    <p>No hay productos disponibles por el momento.</p>
+  {{/each}}
+</ul>
