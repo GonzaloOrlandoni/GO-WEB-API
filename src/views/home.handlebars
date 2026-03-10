@@ -1,13 +1,49 @@
-<h1>Catálogo GO Web Solutions</h1>
+<h1>Catálogo de GO Web Solutions</h1>
 
 <ul>
   {{#each products}}
     <li>
       <strong>{{this.title}}</strong>
       - ${{this.price}}
-      <p>{{this.description}}</p>
+      <p>Categoría: {{this.category}} | Stock: {{this.stock}}</p>
+      <button onclick="agregarAlCarrito('{{this._id}}')">Agregar al Carrito</button>
+      <hr />
     </li>
-  {{else}}
-    <p>No hay productos disponibles por el momento.</p>
   {{/each}}
 </ul>
+
+<div>
+  {{#if hasPrevPage}}
+    <a href="/?page={{prevPage}}"><button>Anterior</button></a>
+  {{/if}}
+
+  <span>Página {{page}}</span>
+
+  {{#if hasNextPage}}
+    <a href="/?page={{nextPage}}"><button>Siguiente</button></a>
+  {{/if}}
+</div>
+
+<script>
+    // Usamos el ID de tu carrito fijo para esta entrega de Coderhouse
+    const CART_ID = "69b0629115047c8f59a97c73";
+
+    async function agregarAlCarrito(productId) {
+        try {
+            // Hacemos la petición POST a tu API
+            const response = await fetch(`/api/carts/${CART_ID}/product/${productId}`, {
+                method: 'POST'
+            });
+
+            if (response.ok) {
+                // Si sale bien, tiramos una alerta copada
+                alert("🛒 ¡Producto agregado a tu carrito con éxito!");
+            } else {
+                alert("❌ Hubo un error al agregar el producto.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error de conexión.");
+        }
+    }
+</script>

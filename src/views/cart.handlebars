@@ -1,0 +1,18 @@
+<h1>Carrito de Compras</h1>
+
+{{#if cart.products.length}}
+  <ul>
+    {{#each cart.products}}
+      <li>
+        <strong>{{this.product.title}}</strong>
+        <p>Precio unitario: ${{this.product.price}} | Cantidad: {{this.quantity}}</p>
+        <hr />
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>🛒 Tu carrito está vacío. ¡Agregá algunos productos de GO Web Solutions!</p>
+{{/if}}
+
+<br />
+<a href="/"><button>Volver al catálogo</button></a>
